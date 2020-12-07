@@ -4,9 +4,9 @@ class User < ApplicationRecord
     validates :password_digest, presence: true
     validates :password, length:{minimum: 6}, allow_nil: true
 
-    after_initialize: ensure_session_token
+    after_initialize :ensure_session_token
 
-    attr_reader: password
+    attr_reader :password
 
     def reset_session_token!
         self.update!(session_token: self.generate_session_token)
